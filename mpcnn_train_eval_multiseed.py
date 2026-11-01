@@ -123,7 +123,7 @@ def build_model(grid=GRID):
     x = tf.keras.layers.Dense(32, activation="relu", name="mlp_dense16")(x)
     x = tf.keras.layers.Dropout(DROPOUT, name="mlp_dropout")(x)
     output = tf.keras.layers.Dense(1, activation="sigmoid", name="output")(x)
-    return tf.keras.Model(inputs, output, name="FireGrid160")
+    return tf.keras.Model(inputs, output, name="FireGrid180")
 
 print("Cargando TRAIN...")
 X_all, y_all = load_dataset(TRAIN_DIR)
@@ -181,7 +181,7 @@ print("TRAINING")
 print("=" * 70)
 
 history = model.fit(train_inputs, y_train_aug, validation_data=(val_inputs, y_val), epochs=EPOCHS, batch_size=BATCH_SIZE, class_weight=class_weight, callbacks=callbacks, verbose=1)
-model.save(os.path.join(OUT_DIR, "firegrid160_final.keras"))
+model.save(os.path.join(OUT_DIR, "firegrid180_final.keras"))
 
 def smooth_curve(values, window=7):
     """Centered moving average for visualization; raw metrics remain unchanged."""
@@ -370,7 +370,7 @@ converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
 converter.inference_input_type = tf.float32
 converter.inference_output_type = tf.float32
 tflite_int8 = converter.convert()
-tflite_int8_path = os.path.join(OUT_DIR, "firegrid160_int8.tflite")
+tflite_int8_path = os.path.join(OUT_DIR, "firegrid180_int8.tflite")
 
 with open(tflite_int8_path, "wb") as f:
     f.write(tflite_int8)
@@ -979,7 +979,7 @@ def build_model(grid=GRID):
     x = tf.keras.layers.Dense(32, activation="relu", name="mlp_dense16")(x)
     x = tf.keras.layers.Dropout(DROPOUT, name="mlp_dropout")(x)
     output = tf.keras.layers.Dense(1, activation="sigmoid", name="output")(x)
-    return tf.keras.Model(inputs, output, name="FireGrid160")
+    return tf.keras.Model(inputs, output, name="FireGrid180")
 
 print("Cargando TRAIN...")
 X_all, y_all = load_dataset(TRAIN_DIR)
@@ -1037,7 +1037,7 @@ print("TRAINING")
 print("=" * 70)
 
 history = model.fit(train_inputs, y_train_aug, validation_data=(val_inputs, y_val), epochs=EPOCHS, batch_size=BATCH_SIZE, class_weight=class_weight, callbacks=callbacks, verbose=1)
-model.save(os.path.join(OUT_DIR, "firegrid160_final.keras"))
+model.save(os.path.join(OUT_DIR, "firegrid180_final.keras"))
 
 def smooth_curve(values, window=7):
     """Centered moving average for visualization; raw metrics remain unchanged."""
@@ -1226,7 +1226,7 @@ converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
 converter.inference_input_type = tf.float32
 converter.inference_output_type = tf.float32
 tflite_int8 = converter.convert()
-tflite_int8_path = os.path.join(OUT_DIR, "firegrid160_int8.tflite")
+tflite_int8_path = os.path.join(OUT_DIR, "firegrid180_int8.tflite")
 
 with open(tflite_int8_path, "wb") as f:
     f.write(tflite_int8)
